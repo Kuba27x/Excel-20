@@ -1,193 +1,210 @@
-Excel-20
+# 🧮 Excel-20
 
-Project Description
+![Status](https://img.shields.io/badge/status-active-brightgreen.svg)
+![Excel](https://img.shields.io/badge/Microsoft-Excel-blue.svg)
+![Solver](https://img.shields.io/badge/Solver-Addin-blueviolet.svg)
+![Analysis](https://img.shields.io/badge/Sensitivity-Analysis-orange.svg)
 
-Excel-20 is a practical guide to learning Solver Add-In in Microsoft Excel. Find examples, clear explanations, and screenshots to help you use Solver efficiently.
+---
 
-Table of Contents
+## ✨ Project Description
 
-Solver
+**Excel-20** is a practical guide to using the Solver Add-In and performing Sensitivity Analysis in Microsoft Excel.  
+Find examples, clear explanations, and screenshots to help you use Solver efficiently for real decision-making problems.
 
-Excel includes a tool called Solver that uses techniques from operations research, a field focused on optimizing decisions, to solve all kinds of problems.
+> 📚 **Goal:** Help you optimize decisions and perform sensitivity analysis—ideal for both beginners and advanced users!
 
-Load the Solver Add-in
+---
 
+## 📒 Table of Contents
+
+- [Solver](#-solver)
+- [First Example: Product Mix](#-first-example-product-mix)
+- [Named Ranges (Product Mix)](#-named-ranges-product-mix)
+- [Second Example: Transportation Problem](#-second-example-transportation-problem)
+- [Named Ranges (Transportation)](#-named-ranges-transportation)
+- [Third Example: Shortest Path](#-third-example-shortest-path)
+- [Named Ranges (Shortest Path)](#-named-ranges-shortest-path)
+- [Sensitivity Analysis](#-sensitivity-analysis)
+- [Screenshots](#-screenshots)
+- [Requirements](#-requirements)
+- [Author](#-author)
+
+---
+
+## 🧮 Solver
+
+Excel includes a tool called **Solver** that uses techniques from operations research to optimize decisions in various problems.
+
+To load the Solver Add-In:
 1. On the File tab, click Options.
-2. Under Add-ins, select Solver Add-in and click on the Go button.
+2. Under Add-ins, select **Solver Add-in** and click **Go**.
+   ![Solver Add-in Menu](Screenshots/Solver1.png)
+3. Check **Solver Add-in** and click **OK**.
+   ![Solver Add-in Check](Screenshots/Solver2.png)
+4. Find Solver on the **Data** tab, in the **Analyze** group.
+   ![Solver on Data Tab](Screenshots/Solver3.png)
 
-![screenshot](Screenshots/Solver1.png)
+---
 
-3. Check Solver Add-in and click OK.
+## 🏷️ First Example: Product Mix
 
-![screenshot](Screenshots/Solver2.png)
+The model to solve:
+![Product Mix Model](Screenshots/Solver4.png)
 
-4. You can find the Solver on the Data tab, in the Analyze group.
+- Task: Find optimal order quantities for bicycles, mopeds, and child seats.
+- Constraints: Capital and storage used must not exceed resources available.
+- Objective: Maximize total profit.
 
-![screenshot](Screenshots/Solver3.png)
+---
 
-First Example
+## 🗂️ Named Ranges (Product Mix)
 
-The model we are going to solve looks as follows in Excel.
+| 🔤 Range Name        | 📋 Cells    |
+|---------------------|------------|
+| UnitProfit          | C4:E4      |
+| OrderSize           | C12:E12    |
+| ResourcesUsed       | G7:G8      |
+| ResourcesAvailable  | I7:I8      |
+| TotalProfit         | I12        |
 
-![screenshot](Screenshots/Solver4.png)
+Insert the following three `SUMPRODUCT` functions as needed.  
+![SUMPRODUCT in Product Mix](Screenshots/Solver5.png)
 
-For this problem, we need Excel to find out how much to order of each product (bicycles, mopeds and child seats).
+> 📝 **Tip:** You can use trial and error, but Solver finds the optimal solution quickly!
 
-The constraints here are that the amount of capital and storage used by the products cannot exceed the limited amount of capital and storage (resources) available.
+---
 
-The overall measure of performance is the total profit of the three products, so the objective is to maximize this quantity.
+1. On the Data tab, in the Analyze group, click **Solver**.
+2. Enter the Solver parameters as shown:
+   ![Solver Parameters](Screenshots/Solver7.png)
+   ![Solver Constraints](Screenshots/Solver6.png)
+   - Check **Make Unconstrained Variables Non-Negative**
+   - Select **Simplex LP**
+3. Click **Solve**.
 
-To make the model easier to understand, create the following named ranges.
+**Result:**
+![Optimal Result](Screenshots/Solver8.png)
+![Optimal Solution](Screenshots/Solver9.png)
 
-Range Name	Cells
-UnitProfit	C4:E4
-OrderSize	C12:E12
-ResourcesUsed	G7:G8
-ResourcesAvailable	I7:I8
-TotalProfit	I12
+It is optimal to order **94 bicycles** and **54 mopeds** for a maximum profit of **25600**. All resources are used.
 
-Insert the following three SUMPRODUCT functions.
+---
 
-![screenshot](Screenshots/Solver5.png)
+## 🚚 Second Example: Transportation Problem
 
-You can try and use trial and error method to solve it but Excel Solver can be used to quickly find the optimal solution.
+- Task: Find how many units to ship from each factory to each customer to minimize total cost.
+![Transportation Model](Screenshots/Solver10.png)
 
-1. On the Data tab, in the Analyze group, click Solver.
-2. Enter the Solver parameters. The result should be consistent with the picture below.
+- Constraints: Each factory has a fixed supply, each customer has a fixed demand.
+- Objective: Minimize total transportation cost.
 
-![screenshot](Screenshots/Solver7.png)
+---
 
-You have the choice of typing the range names or clicking on the cells in the spreadsheet.
+## 🗂️ Named Ranges (Transportation)
 
-(Note: To add a constraint click Add.)
+| 🔤 Range Name        | 📋 Cells    |
+|---------------------|------------|
+| UnitCost            | C4:E6      |
+| Shipments           | C10:E12    |
+| TotalIn             | C14:E14    |
+| Demand              | C16:E16    |
+| TotalOut            | G10:G12    |
+| Supply              | I10:I12    |
+| TotalCost           | I16        |
 
-![screenshot](Screenshots/Solver6.png)
+Insert the required functions:  
+![SUMPRODUCT in Transportation](Screenshots/Solver11.png)
 
-Make sure to check 'Make Unconstrained Variables Non-Negative' and select 'Simplex LP'.
+---
 
-3. Click Solve.
+1. On the Data tab, click **Solver**.
+2. Enter parameters as shown:
+   ![Solver Parameters](Screenshots/Solver12.png)
+   - Add necessary constraints.
+3. Click **Solve**.
 
-Result:
+**Result:**  
+![Optimal Solution](Screenshots/Solver13.png)
 
-![screenshot](Screenshots/Solver8.png)
+Minimum cost: **26000**. All constraints satisfied.
 
-The optimal solution:
+---
 
-![screenshot](Screenshots/Solver9.png)
+## 🚦 Third Example: Shortest Path Problem
 
-It is optimal to order 94 bicycles and 54 mopeds. This solution gives the maximum profit of 25600. This solution uses all the resources available.
+- Task: Find the shortest path from node S to node T in an undirected network.
+![Shortest Path Model](Screenshots/Solver14.png)
 
-Second Example
+- Net Flow (Flow Out - Flow In) of each node should equal Supply/Demand.
+- Objective: Minimize the total distance.
 
-Transportation Problem
+---
 
-Use the solver in Excel to find the number of units to ship from each factory to each customer that minimizes the total cost.
+## 🗂️ Named Ranges (Shortest Path)
 
-The model we are going to solve looks as follows in Excel.
+| 🔤 Range Name      | 📋 Cells    |
+|-------------------|------------|
+| From              | B4:B21     |
+| To                | C4:C21     |
+| Distance          | D4:D21     |
+| Go                | F4:F21     |
+| NetFlow           | I4:I10     |
+| SupplyDemand      | K4:K10     |
+| TotalDistance     | F23        |
 
-![screenshot](Screenshots/Solver10.png)
+Insert the necessary functions:  
 
-For this problem, we need Excel to find out how many units to ship from each factory to each customer.
+![Shortest Path Functions](Screenshots/Solver15.png)
 
-Each factory has a fixed supply and each customer has a fixed demand.
+![Shortest Path Functions 2](Screenshots/Solver16.png)
 
-The overall measure of performance is the total cost of the shipments, so the objective is to minimize this quantity.
+---
 
-To make the model easier to understand, create the following named ranges.
+1. On the Data tab, click **Solver**.
+2. Enter parameters as shown:
+   ![Solver Parameters](Screenshots/Solver18.png)
+3. Click **Solve**.
 
-Range Name	Cells
-UnitCost	C4:E6
-Shipments	C10:E12
-TotalIn	C14:E14
-Demand	C16:E16
-TotalOut	G10:G12
-Supply	I10:I12
-TotalCost	I16
+**Result:**  
+![Optimal Solution](Screenshots/Solver19.png)
 
-Insert the following functions.
+Shortest path: **S → A → D → C → T** (Total distance = 11).
 
-![screenshot](Screenshots/Solver11.png)
+---
 
-1. On the Data tab, in the Analyze group, click Solver.
-2. Enter the solver parameters. The result should be consistent with the picture below.
+## 🧪 Sensitivity Analysis
 
-![screenshot](Screenshots/Solver12.png)
+Sensitivity analysis shows how the optimal solution changes when coefficients in the model change.
 
-Make sure to add constraints.
+- Use Solver for the first example.
+- Before clicking OK, choose **Sensitivity** from the Reports section.
+  ![Sensitivity Report Option](Screenshots/Solver20.png)
 
-3. Click Solve.
+See the report:
+![Sensitivity Report](Screenshots/Solver21.png)
 
-The optimal solution:
+- **Reduced Cost:** How much objective coefficients (unit profits) can change before the solution changes.
+- **Shadow Price:** How much the optimal solution changes if right-hand side values (resources) change by one unit.
 
-![screenshot](Screenshots/Solver13.png)
+---
 
-This solution gives the minimum cost of 26000. All constraints are satisfied.
+## 📷 Screenshots
 
-Third Example
+All screenshots referenced above can be found in the `/Screenshots` folder.
 
-Shortest Path Problem
+---
 
-Use the solver in Excel to find the shortest path from node S to node T in an undirected network.
+## ℹ️ Requirements
 
-The model we are going to solve looks as follows in Excel.
+- Microsoft Excel (recommended: 2021/365 for modern formulas)
+- Solver Add-In enabled
 
-![screenshot](Screenshots/Solver14.png)
+---
 
-For this problem, we need Excel to find out if an arc is on the shortest path or not (Yes=1, No=0).
+## 👨‍💻 Author
 
-The Net Flow (Flow Out - Flow In) of each node should be equal to Supply/Demand. 
+Project and documentation by **Kuba27x**  
+Repository: [Kuba27x/Excel-20](https://github.com/Kuba27x/Excel-20)
 
-The overall measure of performance is the total distance of the shortest path, so the objective is to minimize this quantity.
-
-To make the model easier to understand, create the following named ranges.
-
-Range Name	Cells
-From	B4:B21
-To	C4:C21
-Distance	D4:D21
-Go	F4:F21
-NetFlow	I4:I10
-SupplyDemand	K4:K10
-TotalDistance	F23
-
-Insert the following functions.
-
-![screenshot](Screenshots/Solver15.png)
-
-![screenshot](Screenshots/Solver16.png)
-
-1. On the Data tab, in the Analyze group, click Solver.
-2. Enter the solver parameters. The result should be consistent with the picture below.
-
-![screenshot](Screenshots/Solver18.png)
-
-3. Click Solve.
-
-The optimal solution:
-
-![screenshot](Screenshots/Solver19.png)
-
-S -> A -> D -> C -> T is the shortest path with a total distance of 11.
-
-Sensitivity Analysis
-
-Sensitivity analysis gives you insight into how the optimal solution changes when you change the coefficients of the model.
-
-Use solver for first example here.
-
-1. Before you click OK, select Sensitivity from the Reports section.
-
-![screenshot](Screenshots/Solver20.png)
-
-Below you can find the sensitivity report.
-
-![screenshot](Screenshots/Solver21.png)
-
-Reduced Cost
-
-The reduced costs tell us how much the objective coefficients (unit profits) can be increased or decreased before the optimal solution changes.
-
-Shadow Price
-
-The shadow prices tell us how much the optimal solution can be increased or decreased if we change the right hand side values (resources available) by one unit.
-
+---
