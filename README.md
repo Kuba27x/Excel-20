@@ -39,10 +39,15 @@ Excel includes a tool called **Solver** that uses techniques from operations res
 To load the Solver Add-In:
 1. On the File tab, click Options.
 2. Under Add-ins, select **Solver Add-in** and click **Go**.
-   ![Solver Add-in Menu](Screenshots/Solver1.png)
+   
+![Solver Add-in Menu](Screenshots/Solver1.png)
+   
 3. Check **Solver Add-in** and click **OK**.
+   
    ![Solver Add-in Check](Screenshots/Solver2.png)
+
 4. Find Solver on the **Data** tab, in the **Analyze** group.
+   
    ![Solver on Data Tab](Screenshots/Solver3.png)
 
 ---
@@ -50,6 +55,7 @@ To load the Solver Add-In:
 ## 🏷️ First Example: Product Mix
 
 The model to solve:
+
 ![Product Mix Model](Screenshots/Solver4.png)
 
 - Task: Find optimal order quantities for bicycles, mopeds, and child seats.
@@ -69,6 +75,7 @@ The model to solve:
 | TotalProfit         | I12        |
 
 Insert the following three `SUMPRODUCT` functions as needed.  
+
 ![SUMPRODUCT in Product Mix](Screenshots/Solver5.png)
 
 > 📝 **Tip:** You can use trial and error, but Solver finds the optimal solution quickly!
@@ -77,14 +84,20 @@ Insert the following three `SUMPRODUCT` functions as needed.
 
 1. On the Data tab, in the Analyze group, click **Solver**.
 2. Enter the Solver parameters as shown:
+   
    ![Solver Parameters](Screenshots/Solver7.png)
+   
    ![Solver Constraints](Screenshots/Solver6.png)
+   
    - Check **Make Unconstrained Variables Non-Negative**
    - Select **Simplex LP**
+     
 3. Click **Solve**.
 
 **Result:**
+
 ![Optimal Result](Screenshots/Solver8.png)
+
 ![Optimal Solution](Screenshots/Solver9.png)
 
 It is optimal to order **94 bicycles** and **54 mopeds** for a maximum profit of **25600**. All resources are used.
@@ -94,6 +107,7 @@ It is optimal to order **94 bicycles** and **54 mopeds** for a maximum profit of
 ## 🚚 Second Example: Transportation Problem
 
 - Task: Find how many units to ship from each factory to each customer to minimize total cost.
+  
 ![Transportation Model](Screenshots/Solver10.png)
 
 - Constraints: Each factory has a fixed supply, each customer has a fixed demand.
@@ -114,17 +128,20 @@ It is optimal to order **94 bicycles** and **54 mopeds** for a maximum profit of
 | TotalCost           | I16        |
 
 Insert the required functions:  
+
 ![SUMPRODUCT in Transportation](Screenshots/Solver11.png)
 
 ---
 
 1. On the Data tab, click **Solver**.
 2. Enter parameters as shown:
+   
    ![Solver Parameters](Screenshots/Solver12.png)
    - Add necessary constraints.
 3. Click **Solve**.
 
 **Result:**  
+
 ![Optimal Solution](Screenshots/Solver13.png)
 
 Minimum cost: **26000**. All constraints satisfied.
@@ -134,6 +151,7 @@ Minimum cost: **26000**. All constraints satisfied.
 ## 🚦 Third Example: Shortest Path Problem
 
 - Task: Find the shortest path from node S to node T in an undirected network.
+  
 ![Shortest Path Model](Screenshots/Solver14.png)
 
 - Net Flow (Flow Out - Flow In) of each node should equal Supply/Demand.
@@ -163,10 +181,13 @@ Insert the necessary functions:
 
 1. On the Data tab, click **Solver**.
 2. Enter parameters as shown:
+   
    ![Solver Parameters](Screenshots/Solver18.png)
+   
 3. Click **Solve**.
 
 **Result:**  
+
 ![Optimal Solution](Screenshots/Solver19.png)
 
 Shortest path: **S → A → D → C → T** (Total distance = 11).
@@ -179,9 +200,11 @@ Sensitivity analysis shows how the optimal solution changes when coefficients in
 
 - Use Solver for the first example.
 - Before clicking OK, choose **Sensitivity** from the Reports section.
+  
   ![Sensitivity Report Option](Screenshots/Solver20.png)
 
 See the report:
+
 ![Sensitivity Report](Screenshots/Solver21.png)
 
 - **Reduced Cost:** How much objective coefficients (unit profits) can change before the solution changes.
